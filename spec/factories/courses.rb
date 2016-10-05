@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :course do
-    name "MyString"
-    description "MyString"
+    sequence(:name) {|n| "Course #{n}" }
+    sequence(:description) {|n| "It is a course about #{n}" }
     status 1
   end
 end
