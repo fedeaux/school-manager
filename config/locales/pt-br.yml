@@ -1,0 +1,55 @@
+pt-br:
+  actions:
+    cancel: Cancelar
+    save: Salvar
+    add:
+      student: Adicionar aluno
+      course: Adicionar curso
+      student_to_course: Adicionar aluno ao curso
+
+  models:
+    courses: Cursos
+    students: Alunos
+
+  menu:
+    courses: Cursos
+    students: Alunos
+
+  students:
+    name: Nome
+    register_number: Número de registro
+
+    errors:
+      name:
+        required: Por favor insira um nome para este aluno.
+        minlength: O nome deve ter pelo menos 3 caracteres.
+        maxlength: O nome pode ter no máximo 255 caracteres.
+
+      register_number:
+        required: Por favor insira um número de registro para este aluno.
+        minlength: O número de registro deve ter pelo menos 3 caracteres.
+        maxlength: O número de registro pode ter no máximo 255 caracteres.
+
+      status:
+        required: É necessário selecionar um status.
+
+  courses:
+    name: Nome
+    description: Descrição
+
+    errors:
+      name:
+        required: Por favor insira um nome para este curso.
+        minlength: O nome deve ter pelo menos 3 caracteres.
+        maxlength: O nome pode ter no máximo 255 caracteres.
+
+      description:
+        required: Por favor insira uma descrição para este curso.
+        minlength: A descrição deve ter pelo menos 3 caracteres.
+        maxlength: A descrição pode ter no máximo 255 caracteres.
+
+      status:
+        required: É necessário selecionar um status.
+
+  course_students:
+    empty_course_message: Nenhum estudante nesse curso

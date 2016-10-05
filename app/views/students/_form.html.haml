@@ -1,55 +1,55 @@
 %form.ui.form{ novalidate: true, name: 'studentForm' }
 
   .field{ ng_class: "{ 'error' : studentForm['student[name]'].$touched && studentForm['student[name]'].$invalid }" }
-    = label :student, :name, 'Name'
+    = label :student, :name, t('students.name')
     = text_field :student, :name, { ng_model: "students_ctrl.form_student.name",
                                     required: true,
                                     ng_minlength: 3,
                                     ng_maxlength: 255 }
 
     .ui.pointing.red.label.error-messages{ ng_messages: "studentForm['student[name]'].$error" }
-      .error{ ng_message: :required } Please provide a name for this student.
+      .error{ ng_message: :required }= t('students.errors.name.required')
       .error{ ng_message: :minlength }
-        The name must contain at least 3 characters.
+        = t('students.errors.name.minlength')
         ({{ studentForm['student[name]'].$viewValue.length }})
 
       .error{ ng_message: :maxlength }
-        The name must contain at most 255 characters.
+        = t('students.errors.name.maxlength')
         ({{ studentForm['student[name]'].$viewValue.length }})
 
   .field{ ng_class: "{ 'error' : studentForm['student[register_number]'].$touched && studentForm['student[register_number]'].$invalid }" }
-    = label :student, :register_number, 'Register Number'
+    = label :student, :register_number, t('students.register_number')
     = text_field :student, :register_number, { ng_model: "students_ctrl.form_student.register_number",
                                     required: true,
                                     ng_minlength: 3,
                                     ng_maxlength: 255 }
 
     .ui.pointing.red.label.error-messages{ ng_messages: "studentForm['student[register_number]'].$error" }
-      .error{ ng_message: :required } Please provide a register_number for this student.
+      .error{ ng_message: :required }= t('students.errors.register_number.required')
       .error{ ng_message: :minlength }
-        The register_number must contain at least 3 characters.
+        = t('students.errors.register_number.minlength')
         ({{ studentForm['student[register_number]'].$viewValue.length }})
 
       .error{ ng_message: :maxlength }
-        The register_number must contain at most 255 characters.
+        = t('students.errors.register_number.maxlength')
         ({{ studentForm['student[register_number]'].$viewValue.length }})
 
   .field{ ng_class: "{ 'error' : studentForm['student[status]'].$touched && studentForm['student[status]'].$invalid }" }
-    = label :student, :status, 'Status'
+    = label :student, :status, t('students.status')
     %select{ name: "student[status]", ng_model: "students_ctrl.form_student.status",
              ng_options: "status.text for status in #{Status.to_array_of_objects.to_json} track by status.id",
              required: true  }
 
     .ui.pointing.red.label.error-messages{ ng_messages: "studentForm['student[status]'].$error" }
-      .error{ ng_message: :required } Please provide a status for this student.
+      .error{ ng_message: :required }= t('students.errors.status.required')
 
   .field
     .ui.buttons
       .ui.basic.button{ ng_click: 'students_ctrl.clearFormStudent(studentForm)',
-                        ng_hide: 'students_ctrl.form_student.isPersisted()'} Cancel
+                        ng_hide: 'students_ctrl.form_student.isPersisted()'}= t('actions.cancel')
 
       .ui.basic.button{ ng_click: 'students_ctrl.cancelStudentEdit(studentForm)',
-                        ng_show: 'students_ctrl.form_student.isPersisted()'} Cancel
+                        ng_show: 'students_ctrl.form_student.isPersisted()'}= t('actions.cancel')
 
       .ui.primary.button{ ng_click: 'students_ctrl.saveFormStudent(studentForm)',
-                          ng_class: "{ 'disabled' : studentForm.$invalid }" } Save
+                          ng_class: "{ 'disabled' : studentForm.$invalid }" }= t('actions.save')
