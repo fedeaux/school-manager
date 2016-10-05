@@ -1,7 +1,7 @@
 angular.module('SchoolManagerApp').factory 'StudentsService', ($resource, $http) ->
   class StudentsService
     constructor: (@onError = (->)) ->
-      @url = "students/:id"
+      @url = "api/students/:id"
 
       @service = $resource("#{config.api_url}#{@url}", {}, {
        'update': { method: 'PUT'}
