@@ -1,6 +1,6 @@
 class Api::CourseStudentsController < Api::ApiBase
   before_action :set_course
-  before_action :set_student, only: [:create]
+  before_action :set_student, only: [:create, :destroy]
 
   def index
     @students = @course.students
@@ -13,6 +13,15 @@ class Api::CourseStudentsController < Api::ApiBase
     else
       Classroom.create student: @student, course: @course
       render 'api/students/show'
+    end
+  end
+
+  def destroy
+    if @student.courses.include? @course
+      Classroom.where(student: @student, course: @course).first.destroy
+      render 'api/students/show'
+    else
+      head(404)
     end
   end
 

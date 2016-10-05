@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     resources :courses do
       resources :students, controller: :course_students, only: [:index] do
         post '' => :create, as: :add_student_to_course
+        delete '' => :destroy, as: :remove_student_from_course
       end
     end
 

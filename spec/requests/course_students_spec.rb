@@ -30,7 +30,7 @@ RSpec.describe "Course students (classrooms) requests", type: :request do
   end
 
   describe "POST /api/courses/:course_id/students/:student_id" do
-    it 'add a new student to a course' do
+    it 'adds a new student to a course' do
       post api_course_student_add_student_to_course_path(course_id: course.id, student_id: student_1.id)
       json_response = JSON.parse(response.body)
       expect(json_response).to have_key 'student'
@@ -49,6 +49,29 @@ RSpec.describe "Course students (classrooms) requests", type: :request do
 
       course.reload
       expect(course.students).to include student_1
+    end
+  end
+
+  describe "DELETE /api/courses/:course_id/students/:student_id" do
+    it 'removes a student from a course' do
+      # Add student 1
+      Classroom.create student: student_1, course: course
+
+      delete api_course_student_remove_student_from_course_path(course_id: course.id, student_id: student_1.id)
+      json_response = JSON.parse(response.body)
+      expect(json_response).to have_key 'student'
+
+      course.reload
+      expect(course.students).not_to include student_1
+    end
+
+    it "returns with 404: not found if the student isn't on the course" do
+      # Make a request to include student 1 again
+      delete api_course_student_add_student_to_course_path(course_id: course.id, student_id: student_1.id)
+      expect(response).to have_http_status 404
+
+      course.reload
+      expect(course.students).not_to include student_1
     end
   end
 end
