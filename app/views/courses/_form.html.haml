@@ -1,37 +1,37 @@
 %form.ui.form{ novalidate: true, name: 'courseForm' }
 
   .field{ ng_class: "{ 'error' : courseForm['course[name]'].$touched && courseForm['course[name]'].$invalid }" }
-    = label :course, :name, 'Name'
+    = label :course, :name, t('courses.name')
     = text_field :course, :name, { ng_model: "courses_ctrl.form_course.name",
                                    required: true,
                                    ng_minlength: 3,
                                    ng_maxlength: 255 }
 
     .ui.pointing.red.label.error-messages{ ng_messages: "courseForm['course[name]'].$error" }
-      .error{ ng_message: :required } Please provide a name for this course.
+      .error{ ng_message: :required }= t('courses.errors.name.required')
       .error{ ng_message: :minlength }
-        The name must contain at least 3 characters.
+        = t('courses.errors.name.minlength')
         ({{ courseForm['course[name]'].$viewValue.length }})
 
       .error{ ng_message: :maxlength }
-        The name must contain at most 255 characters.
+        = t('courses.errors.name.maxlength')
         ({{ courseForm['course[name]'].$viewValue.length }})
 
   .field{ ng_class: "{ 'error' : courseForm['course[description]'].$touched && courseForm['course[description]'].$invalid }" }
-    = label :course, :description, 'Description'
+    = label :course, :description, t('courses.description')
     = text_field :course, :description, { ng_model: "courses_ctrl.form_course.description",
                                           required: true,
                                           ng_minlength: 3,
                                           ng_maxlength: 255 }
 
     .ui.pointing.red.label.error-messages{ ng_messages: "courseForm['course[description]'].$error" }
-      .error{ ng_message: :required } Please provide a description for this course.
+      .error{ ng_message: :required }= t('courses.errors.description.required')
       .error{ ng_message: :minlength }
-        The description must contain at least 3 characters.
+        = t('courses.errors.description.minlength')
         ({{ courseForm['course[description]'].$viewValue.length }})
 
       .error{ ng_message: :maxlength }
-        The description must contain at most 255 characters.
+        = t('courses.errors.description.maxlength')
         ({{ courseForm['course[description]'].$viewValue.length }})
 
   .field{ ng_class: "{ 'error' : courseForm['course[status]'].$touched && courseForm['course[status]'].$invalid }" }
@@ -41,15 +41,15 @@
              required: true  }
 
     .ui.pointing.red.label.error-messages{ ng_messages: "courseForm['course[status]'].$error" }
-      .error{ ng_message: :required } Please provide a status for this course.
+      .error{ ng_message: :required }= = t('courses.errors.status.required')
 
   .field
     .ui.buttons
       .ui.basic.button{ ng_click: 'courses_ctrl.clearFormCourse(courseForm)',
-                        ng_hide: 'courses_ctrl.form_course.isPersisted()'} Cancel
+                        ng_hide: 'courses_ctrl.form_course.isPersisted()'}= t('actions.cancel')
 
       .ui.basic.button{ ng_click: 'courses_ctrl.cancelCourseEdit(courseForm)',
-                        ng_show: 'courses_ctrl.form_course.isPersisted()'} Cancel
+                        ng_show: 'courses_ctrl.form_course.isPersisted()'}= t('actions.cancel')
 
       .ui.primary.button{ ng_click: 'courses_ctrl.saveFormCourse(courseForm)',
-                          ng_class: "{ 'disabled' : courseForm.$invalid }" } Save
+                          ng_class: "{ 'disabled' : courseForm.$invalid }" }= t('actions.save')
