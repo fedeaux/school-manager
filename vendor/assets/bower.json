@@ -13,5 +13,6 @@
     "checklist-model": "latest"
   },
   "resolutions": {
+    "angular": "1.5.3"
   }
 }
