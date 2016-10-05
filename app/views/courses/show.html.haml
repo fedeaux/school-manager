@@ -4,7 +4,7 @@
   {{ course_ctrl.course.name }}
   .sub.header {{ course_ctrl.course.description }}
 
-.ui.small.info.message{ ng_show: 'course_ctrl.displayable_students.length == 0' }
+.ui.small.info.message#empty-course-message{ ng_show: 'course_ctrl.displayable_students.length == 0' }
   No student on this course
 
 %table.ui.compact.table#students-list{ ng_hide: 'course_ctrl.displayable_students.length == 0' }
@@ -17,14 +17,14 @@
       %th
 
   %tbody
-    %tr.student-list-item{ ng_repeat: 'student in course_ctrl.displayable_students' }
+    %tr.student-list-item{ ng_repeat: 'student in course_ctrl.displayable_students', ng_attr_id: 'student-list-item-{{ student.id }}' }
       %td {{ student.id }}
       %td {{ student.name }}
       %td {{ student.register_number }}
       %td {{ student.status.text }}
       %td
         .ui.basic.mini.buttons
-          .ui.red.icon.action.button{ ng_click: 'course_ctrl.removeStudent(student)' }
+          .ui.red.icon.action.button.student-list-remove-from-course-button{ ng_click: 'course_ctrl.removeStudent(student)' }
             %i.ui.remove.icon
 
 .ui.form
@@ -33,4 +33,4 @@
     %select{ name: "classroom[student]", ng_model: "course_ctrl.new_student_id", ng_options: "student.id as student.signature for student in #{Student.as_options.to_json } track by student.id", required: true  }
 
   .field
-    .ui.primary.button{ ng_click: 'course_ctrl.addStudent()' } Add student
+    .ui.primary.button#add-student-button{ ng_click: 'course_ctrl.addStudent()' } Add student
