@@ -7,3 +7,5 @@
 ### Observações
 
 * O tempo esperado para o projeto era de 4h, então eu deixei algumas coisas óbvias por fazer: Por exemplo, não permitir que alunos sejam adicionados a cursos desativados.
+* Tem um bug na view que permite ao usuário clicar em "criar" mesmo sem selecionar um status. O model não deixa ele criar. Parece fácil de consertar, mas o tempo acabou :(
+* O campo select para seleção de alunos a serem adicionados foi feito do jeito mais ingênuo possível. Se eu tivesse mais tempo, faria um serviço responsável por pegar todos os alunos que não estão no curso para preencher o select. Isso também faria com que o usuários não tivesse que fazer reload na página para que novos alunos apareçam nas opções.
