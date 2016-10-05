@@ -6,6 +6,8 @@ pt-br:
       student: Adicionar aluno
       course: Adicionar curso
       student_to_course: Adicionar aluno ao curso
+    all:
+      courses: Todos os cursos
 
   models:
     courses: Cursos
@@ -53,3 +55,8 @@ pt-br:
 
   course_students:
     empty_course_message: Nenhum estudante nesse curso
+
+  enumerations:
+    status:
+      active: Ativo
+      inactive: Inativo
