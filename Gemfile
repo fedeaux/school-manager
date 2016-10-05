@@ -13,6 +13,7 @@ gem 'seedbank'
 
 # Modeling
 gem 'devise'
+gem 'enumerate_it'
 
 # CSS Framework
 gem 'therubyracer'
