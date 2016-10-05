@@ -1,5 +1,5 @@
 #students-list-wrapper{ ng_hide: 'students_ctrl.form_student' }
-  .ui.primary.button{ ng_click: 'students_ctrl.setBlankFormStudent(studentForm)' } Add new student
+  .ui.primary.button{ ng_click: 'students_ctrl.setBlankFormStudent(studentForm)' }= t('actions.add.student')
   = render 'students/list'
 
 #waiters-form-wrapper{ ng_show: 'students_ctrl.form_student' }
