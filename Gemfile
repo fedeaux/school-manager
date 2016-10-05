@@ -13,6 +13,7 @@ gem 'seedbank'
 
 # Modeling
 gem 'devise'
+gem 'enumerate_it'
 
 # CSS Framework
 gem 'therubyracer'
@@ -23,6 +24,7 @@ gem "bower-rails", "~> 0.10.0"
 gem 'coffee-rails', '~> 4.2'
 gem 'compass-rails'
 gem 'haml-rails'
+gem 'slim-rails'
 gem 'jquery-rails'
 gem 'sass-rails', '~> 5.0'
 gem 'sprockets', '~> 3.6.3'
