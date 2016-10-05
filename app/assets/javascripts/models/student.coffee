@@ -16,6 +16,9 @@ angular.module('SchoolManagerApp').factory 'Student', ->
     defaultAttributes: ->
       attr =
         id: null
+        name: null
+        register_number: null
+        status: {}
 
       attr
 
@@ -24,5 +27,7 @@ angular.module('SchoolManagerApp').factory 'Student', ->
 
       for name, default_value of @defaultAttributes()
         attr[name] = @[name]
+
+      attr.status = @status.id
 
       attr

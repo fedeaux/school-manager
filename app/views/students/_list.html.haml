@@ -1,0 +1,19 @@
+%table.ui.compact.table#students-list
+  %thead
+    %tr
+      %th ID
+      %th Name
+      %th Register Number
+      %th Status
+      %th
+
+  %tbody
+    %tr.student-list-item{ ng_repeat: 'student in students_ctrl.displayable_students' }
+      %td {{ student.id }}
+      %td {{ student.name }}
+      %td {{ student.register_number }}
+      %td {{ student.status.text }}
+      %td
+        .ui.basic.mini.buttons
+          .ui.icon.action.button{ ng_click: 'students_ctrl.setFormStudent(student)' }
+            %i.ui.edit.icon
