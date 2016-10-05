@@ -1,0 +1,6 @@
+#courses-list-wrapper{ ng_hide: 'courses_ctrl.form_course' }
+  .ui.primary.button{ ng_click: 'courses_ctrl.setBlankFormCourse(courseForm)' } Add new course
+  = render 'courses/list'
+
+#waiters-form-wrapper{ ng_show: 'courses_ctrl.form_course' }
+  = render 'courses/form'

@@ -1,0 +1,22 @@
+%table.ui.compact.table#courses-list
+  %thead
+    %tr
+      %th ID
+      %th Name
+      %th Description
+      %th Status
+      %th
+
+  %tbody
+    %tr.course-list-item{ ng_repeat: 'course in courses_ctrl.displayable_courses' }
+      %td {{ course.id }}
+      %td
+        = link_to '', ng_href: "#/courses/{{course.id}}" do
+          {{ course.name }}
+
+      %td {{ course.description }}
+      %td {{ course.status.text }}
+      %td
+        .ui.basic.mini.buttons
+          .ui.icon.action.button{ ng_click: 'courses_ctrl.setFormCourse(course)' }
+            %i.ui.edit.icon

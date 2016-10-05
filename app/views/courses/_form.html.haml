@@ -1,0 +1,55 @@
+%form.ui.form{ novalidate: true, name: 'courseForm' }
+
+  .field{ ng_class: "{ 'error' : courseForm['course[name]'].$touched && courseForm['course[name]'].$invalid }" }
+    = label :course, :name, 'Name'
+    = text_field :course, :name, { ng_model: "courses_ctrl.form_course.name",
+                                   required: true,
+                                   ng_minlength: 3,
+                                   ng_maxlength: 255 }
+
+    .ui.pointing.red.label.error-messages{ ng_messages: "courseForm['course[name]'].$error" }
+      .error{ ng_message: :required } Please provide a name for this course.
+      .error{ ng_message: :minlength }
+        The name must contain at least 3 characters.
+        ({{ courseForm['course[name]'].$viewValue.length }})
+
+      .error{ ng_message: :maxlength }
+        The name must contain at most 255 characters.
+        ({{ courseForm['course[name]'].$viewValue.length }})
+
+  .field{ ng_class: "{ 'error' : courseForm['course[description]'].$touched && courseForm['course[description]'].$invalid }" }
+    = label :course, :description, 'Description'
+    = text_field :course, :description, { ng_model: "courses_ctrl.form_course.description",
+                                          required: true,
+                                          ng_minlength: 3,
+                                          ng_maxlength: 255 }
+
+    .ui.pointing.red.label.error-messages{ ng_messages: "courseForm['course[description]'].$error" }
+      .error{ ng_message: :required } Please provide a description for this course.
+      .error{ ng_message: :minlength }
+        The description must contain at least 3 characters.
+        ({{ courseForm['course[description]'].$viewValue.length }})
+
+      .error{ ng_message: :maxlength }
+        The description must contain at most 255 characters.
+        ({{ courseForm['course[description]'].$viewValue.length }})
+
+  .field{ ng_class: "{ 'error' : courseForm['course[status]'].$touched && courseForm['course[status]'].$invalid }" }
+    = label :course, :status, 'Status'
+    %select{ name: "course[status]", ng_model: "courses_ctrl.form_course.status",
+             ng_options: "status.text for status in #{Status.to_array_of_objects.to_json} track by status.id",
+             required: true  }
+
+    .ui.pointing.red.label.error-messages{ ng_messages: "courseForm['course[status]'].$error" }
+      .error{ ng_message: :required } Please provide a status for this course.
+
+  .field
+    .ui.buttons
+      .ui.basic.button{ ng_click: 'courses_ctrl.clearFormCourse(courseForm)',
+                        ng_hide: 'courses_ctrl.form_course.isPersisted()'} Cancel
+
+      .ui.basic.button{ ng_click: 'courses_ctrl.cancelCourseEdit(courseForm)',
+                        ng_show: 'courses_ctrl.form_course.isPersisted()'} Cancel
+
+      .ui.primary.button{ ng_click: 'courses_ctrl.saveFormCourse(courseForm)',
+                          ng_class: "{ 'disabled' : courseForm.$invalid }" } Save
