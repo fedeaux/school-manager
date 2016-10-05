@@ -1,0 +1,21 @@
+# no-override
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: <%= ENV["DEVELOPMENT_DATABASE_NAME"]%>
+
+test:
+  <<: *default
+  database: <%= ENV["TEST_DATABASE_NAME"]%>
+
+production:
+  <<: *default
+  database: <%= ENV["PRODUCTION_DATABASE_NAME"]%>
+  username: <%= ENV["PRODUCTION_DATABASE_USER"]%>
+  password: <%= ENV['PRODUCTION_DATABASE_PASSWORD'] %>
+  host: localhost
+  port: 5432

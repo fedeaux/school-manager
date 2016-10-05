@@ -1,0 +1,17 @@
+{
+  "name": "dsl-generated dependencies",
+  "dependencies": {
+    "es5-shim": "4.5.7",
+    "momentjs": "latest",
+    "angular": "1.5.3",
+    "angular-resource": "1.5.3",
+    "angular-ui-router": "latest",
+    "angular-cookie": "latest",
+    "angular-touch": "latest",
+    "ng-token-auth": "latest",
+    "angular-messages": "latest",
+    "checklist-model": "latest"
+  },
+  "resolutions": {
+  }
+}
