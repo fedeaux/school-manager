@@ -29,22 +29,26 @@ RSpec.describe "Course students (classrooms) requests", type: :request do
     end
   end
 
-  # describe "POST /api/courses" do
-  #   it 'creates a new course' do
-  #     post api_courses_path, params: { course: attributes_for(:course) }
-  #     json_response = JSON.parse(response.body)
-  #     expect(json_response).to have_key 'course'
-  #   end
-  # end
+  describe "POST /api/courses/:course_id/students/:student_id" do
+    it 'add a new student to a course' do
+      post api_course_student_add_student_to_course_path(course_id: course.id, student_id: student_1.id)
+      json_response = JSON.parse(response.body)
+      expect(json_response).to have_key 'student'
 
-  # describe "PUT /api/courses" do
-  #   it 'updates a course' do
-  #     course = create :course
+      course.reload
+      expect(course.students).to include student_1
+    end
 
-  #     put api_course_path(course), params: { course: { name: 'Engineering' } }
-  #     json_response = JSON.parse(response.body)
-  #     expect(json_response).to have_key 'course'
-  #     expect(json_response['course']['name']).to eq 'Engineering'
-  #   end
-  # end
+    it 'returns with 422: unprocessable entity if the student is already on the course' do
+      # Add student 1
+      Classroom.create student: student_1, course: course
+
+      # Make a request to include student 1 again
+      post api_course_student_add_student_to_course_path(course_id: course.id, student_id: student_1.id)
+      expect(response).to have_http_status 422
+
+      course.reload
+      expect(course.students).to include student_1
+    end
+  end
 end
